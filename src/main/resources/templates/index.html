@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div th:if="${game.isEmpty()}">
+    <form name="sizeSelection" id="sizeSelection" method="get" action="/">
+        <label for="fieldSize">Choose field size (between 5 and 20):</label>
+        <input type="number" id="fieldSize" name="fieldSize" min="5" max="20">
+        <input type="submit" value="Start game">
+    </form>
+</div>
+<div th:if="${!game.isEmpty()}" class="game-bar">
+    <a href="/newgame">Start new game</a>
+</div>
+<div th:if="${status == 'LOST'}" class="alert-lost"><span>You lost!!!</span></div>
+<div th:if="${status == 'WON'}" class="alert-won"><span>You won!!!</span></div>
+<div th:utext="${game}"></div>
+</body>
+</html>
